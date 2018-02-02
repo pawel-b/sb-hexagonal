@@ -1,1 +1,1 @@
-# sb-hexagonal
+An example of a small Spring Boot application following the rules of hexagonal architecture
