@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.math.BigDecimal;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -17,7 +18,9 @@ public class LibraryApplication {
 
 	@Bean
 	CommandLineRunner init(JpaAuthorRepository authorRepository, JpaBookRepository bookRepository) {
-		return (evt) -> Stream.of("Lód", "Hobbit").map(n -> new BookDto(null, "Author " + n, "Book " + n, new Random().nextDouble())).forEach(b -> saveBook(authorRepository, bookRepository, b));
+		return (evt) -> Stream.of("Dukaj-Lód", "Tolkien-Hobbit", "Homer-Odyseja", "Cyceron-Anegdoty")
+				.map(n -> new BookDto(null, n.split("-")[0], n.split("-")[1], new BigDecimal(new Random().nextDouble() * 100).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()))
+				.forEach(b -> saveBook(authorRepository, bookRepository, b));
 	}
 
 	private Book saveBook(JpaAuthorRepository authorRepository, JpaBookRepository bookRepository, BookDto b) {

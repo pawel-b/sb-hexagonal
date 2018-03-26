@@ -7,8 +7,8 @@ public interface BaseRepository<T, ID extends Serializable> {
 
     List<T> findAll();
 
-    abstract T findOne(ID paramID);
+    T findOne(ID paramID);
 
-    abstract <S extends T> S save(S paramS);
+    <S extends T> S save(S paramS);
 
 }
