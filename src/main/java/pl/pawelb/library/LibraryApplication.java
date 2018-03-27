@@ -19,7 +19,7 @@ public class LibraryApplication {
 	@Bean
 	CommandLineRunner init(JpaAuthorRepository authorRepository, JpaBookRepository bookRepository) {
 		return (evt) -> Stream.of("Dukaj-Lód", "Tolkien-Hobbit", "Homer-Odyseja", "Cyceron-Anegdoty")
-				.map(n -> new BookDto(null, n.split("-")[0], n.split("-")[1], new BigDecimal(new Random().nextDouble() * 100).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()))
+				.map(n -> new BookDto(null, n.split("-")[0], n.split("-")[1], new BigDecimal(new Random().nextDouble() * 100).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue(), BookState.AVAILABLE.name(), null))
 				.forEach(b -> saveBook(authorRepository, bookRepository, b));
 	}
 

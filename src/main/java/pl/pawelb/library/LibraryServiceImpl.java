@@ -3,6 +3,7 @@ package pl.pawelb.library;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,7 +21,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void addAuthor(AuthorDto authorDto) {
+    public void saveAuthor(AuthorDto authorDto) {
         Author entity = new Author(authorDto);
         authorRepository.save(entity);
     }
@@ -31,7 +32,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void addBook(BookDto bookDto) {
+    public void saveBook(BookDto bookDto) {
         Book entity = new Book(bookDto);
         bookRepository.save(entity);
     }
@@ -55,7 +56,15 @@ public class LibraryServiceImpl implements LibraryService {
     public void rentBook(Long bookId) {
         Book book = bookRepository.findOne(bookId);
         book.setState(BookState.RENTED);
+        book.setRentDate(new Date());
         bookRepository.save(book);
     }
 
+    @Override
+    public void returnBook(Long bookId) {
+        Book book = bookRepository.findOne(bookId);
+        book.setState(BookState.AVAILABLE);
+        book.setRentDate(null);
+        bookRepository.save(book);
+    }
 }

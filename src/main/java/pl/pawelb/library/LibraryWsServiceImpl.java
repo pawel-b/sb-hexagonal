@@ -17,8 +17,8 @@ public class LibraryWsServiceImpl implements LibraryService {
     }
 
     @Override
-    public void addAuthor(AuthorDto authorDto) {
-        libraryService.addAuthor(authorDto);
+    public void saveAuthor(AuthorDto authorDto) {
+        libraryService.saveAuthor(authorDto);
     }
 
     @Override
@@ -27,8 +27,8 @@ public class LibraryWsServiceImpl implements LibraryService {
     }
 
     @Override
-    public void addBook(BookDto book) {
-        libraryService.addBook(book);
+    public void saveBook(BookDto book) {
+        libraryService.saveBook(book);
     }
 
     @Override
@@ -49,5 +49,10 @@ public class LibraryWsServiceImpl implements LibraryService {
     @Override
     public void rentBook(Long bookId) {
         libraryService.rentBook(bookId);
+    }
+
+    @Override
+    public void returnBook(Long bookId) {
+        libraryService.returnBook(bookId);
     }
 }

@@ -1,7 +1,11 @@
 package pl.pawelb.library;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.pawelb.utils.JsonDateSerializer;
+
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -12,21 +16,16 @@ public class BookDto {
     String bookName;
     String bookState;
     Double price;
+    @JsonSerialize(using=JsonDateSerializer.class)
+    Date rentDate;
 
-    public BookDto(Long bookId, Long authorId, String bookName, Double price) {
-        this.bookId = bookId;
-        this.authorId = authorId;
-        this.bookName = bookName;
-        this.bookState = BookState.AVAILABLE.name();
-        this.price = price;
-    }
-
-    public BookDto(Long bookId, String authorName, String bookName, Double price) {
+    public BookDto(Long bookId, String authorName, String bookName, Double price, String bookState, Date rentDate) {
         this.bookId = bookId;
         this.authorName = authorName;
         this.bookName = bookName;
-        this.bookState = BookState.AVAILABLE.name();
+        this.bookState = bookState;
         this.price = price;
+        this.rentDate = rentDate;
     }
 
     public BookDto(Book book) {
@@ -36,6 +35,7 @@ public class BookDto {
         this.bookName = book.getName();
         this.bookState = book.getState().name();
         this.price = book.getPrice();
+        this.rentDate = book.getRentDate();
     }
 
 }

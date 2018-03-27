@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import pl.pawelb.utils.Identifiable;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "book")
@@ -21,6 +22,7 @@ class Book implements Identifiable<Long> {
     private String name;
     private Double price;
     private BookState state;
+    private Date rentDate;
 
     public Book(BookDto bookDto) {
         this.id = bookDto.getBookId();
@@ -28,6 +30,7 @@ class Book implements Identifiable<Long> {
         this.name = bookDto.getBookName();
         this.price = bookDto.getPrice();
         this.state = BookState.AVAILABLE;
+        this.rentDate = bookDto.getRentDate();
     }
 
 }

@@ -6,11 +6,11 @@ import java.util.List;
 @WebService(targetNamespace = "http://pl.pawelb.library/", name = "LibraryService")
 public interface LibraryService {
 
-    void addAuthor(AuthorDto authorDto);
+    void saveAuthor(AuthorDto authorDto);
 
     List<AuthorDto> findAllAuthors();
 
-    void addBook(BookDto book);
+    void saveBook(BookDto book);
 
     List<BookDto> findAllBooks();
 
@@ -20,4 +20,5 @@ public interface LibraryService {
 
     void rentBook(Long bookId);
 
+    void returnBook(Long bookId);
 }

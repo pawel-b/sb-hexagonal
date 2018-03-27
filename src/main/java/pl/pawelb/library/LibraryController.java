@@ -21,7 +21,7 @@ class LibraryController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/author")
     public void addAuthor(@RequestBody AuthorDto dto) {
-        libraryService.addAuthor(dto);
+        libraryService.saveAuthor(dto);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/book")
@@ -36,12 +36,17 @@ class LibraryController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/book")
     public void addBook(@RequestBody BookDto dto) {
-        libraryService.addBook(dto);
+        libraryService.saveBook(dto);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/book/rent/{bookId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/book/{bookId}/rent")
     public void rentBook(@PathVariable Long bookId) {
         libraryService.rentBook(bookId);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/book/{bookId}/rent")
+    public void returnBook(@PathVariable Long bookId) {
+        libraryService.returnBook(bookId);
     }
 
 }
