@@ -1,13 +1,10 @@
-package pl.pawelb.library;
-
-import pl.pawelb.utils.BaseRepository;
-import pl.pawelb.utils.Identifiable;
+package pl.pawelb.utils;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-class InMemoryJpaRepository<T extends Identifiable<Long>> implements BaseRepository<T, Long> {
+public class InMemoryJpaRepository<T extends Identifiable<Long>> implements BaseRepository<T, Long> {
 
     private ConcurrentHashMap<Long, T> repo = new ConcurrentHashMap<>();
 

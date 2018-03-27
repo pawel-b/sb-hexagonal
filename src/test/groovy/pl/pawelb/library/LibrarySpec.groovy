@@ -1,5 +1,6 @@
 package pl.pawelb.library
 
+import pl.pawelb.utils.InMemoryJpaRepository
 import spock.lang.Specification
 
 class InMemoryAuthorRepository extends InMemoryJpaRepository<Author> implements AuthorRepository {}
