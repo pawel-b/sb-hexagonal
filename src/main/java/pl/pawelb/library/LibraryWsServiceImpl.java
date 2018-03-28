@@ -17,8 +17,8 @@ public class LibraryWsServiceImpl implements LibraryService {
     }
 
     @Override
-    public void saveAuthor(AuthorDto authorDto) {
-        libraryService.saveAuthor(authorDto);
+    public void saveAuthor(String authorName) {
+        libraryService.saveAuthor(authorName);
     }
 
     @Override

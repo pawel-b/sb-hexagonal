@@ -20,8 +20,8 @@ class LibraryController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/author")
-    public void addAuthor(@RequestBody AuthorDto dto) {
-        libraryService.saveAuthor(dto);
+    public void addAuthor(@RequestBody String authorName) {
+        libraryService.saveAuthor(authorName);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/book")

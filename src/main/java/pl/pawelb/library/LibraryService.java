@@ -6,7 +6,7 @@ import java.util.List;
 @WebService(targetNamespace = "http://pl.pawelb.library/", name = "LibraryService")
 public interface LibraryService {
 
-    void saveAuthor(AuthorDto authorDto);
+    void saveAuthor(String authorName);
 
     List<AuthorDto> findAllAuthors();
 

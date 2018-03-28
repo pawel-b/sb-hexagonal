@@ -21,8 +21,8 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void saveAuthor(AuthorDto authorDto) {
-        Author entity = new Author(authorDto);
+    public void saveAuthor(String authorName) {
+        Author entity = new Author(authorName);
         authorRepository.save(entity);
     }
 
