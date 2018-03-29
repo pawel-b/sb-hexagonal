@@ -1,11 +1,12 @@
 package pl.pawelb.library;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/library")
+@RequestMapping("/rest/library")
 class LibraryController {
 
     private LibraryService libraryService;
@@ -14,37 +15,42 @@ class LibraryController {
         this.libraryService = libraryService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/author")
-    public List<AuthorDto> getAuthors() {
-        return libraryService.findAllAuthors();
+    @GetMapping(value = "/author")
+    public List<AuthorDto> getAuthors(@RequestParam(value = "authorName", required = false) String authorName) {
+        return StringUtils.isEmpty(authorName) ? libraryService.findAllAuthors() : libraryService.findAuthorsByName(authorName);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/author")
+    @PostMapping(value = "/author")
     public void addAuthor(@RequestBody String authorName) {
         libraryService.saveAuthor(authorName);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/book")
+    @GetMapping(value = "/author/{authorId}")
+    public AuthorDto getAuthorById(@PathVariable Long authorId) {
+        return libraryService.findAuthorById(authorId);
+    }
+
+    @GetMapping(value = "/book")
     public List<BookDto> getBooks() {
         return libraryService.findAllBooks();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/book/{bookId}")
+    @GetMapping(value = "/book/{bookId}")
     public BookDto getBookById(@PathVariable Long bookId) {
-        return libraryService.findById(bookId);
+        return libraryService.findBookById(bookId);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/book")
+    @PostMapping(value = "/book")
     public void addBook(@RequestBody BookDto dto) {
         libraryService.saveBook(dto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/book/{bookId}/rent")
+    @PutMapping(value = "/book/{bookId}/rent")
     public void rentBook(@PathVariable Long bookId) {
         libraryService.rentBook(bookId);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/book/{bookId}/rent")
+    @DeleteMapping(value = "/book/{bookId}/rent")
     public void returnBook(@PathVariable Long bookId) {
         libraryService.returnBook(bookId);
     }

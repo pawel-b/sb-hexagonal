@@ -10,13 +10,17 @@ public interface LibraryService {
 
     List<AuthorDto> findAllAuthors();
 
+    AuthorDto findAuthorById(Long id);
+
+    List<AuthorDto> findAuthorsByName(String name);
+
     void saveBook(BookDto book);
 
     List<BookDto> findAllBooks();
 
-    BookDto findById(Long id);
+    BookDto findBookById(Long id);
 
-    BookDto findByName(String name);
+    List<BookDto> findBooksByName(String name);
 
     void rentBook(Long bookId);
 

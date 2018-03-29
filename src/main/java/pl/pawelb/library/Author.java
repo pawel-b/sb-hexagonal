@@ -21,7 +21,7 @@ class Author implements Identifiable<Long> {
     }
 
     public Author(AuthorDto authorDto) {
-        this.id = authorDto.getId();
+        this.id = authorDto.getAuthorId();
         this.name = authorDto.getAuthorName();
     }
 

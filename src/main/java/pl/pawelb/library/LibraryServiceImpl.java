@@ -32,6 +32,16 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
+    public AuthorDto findAuthorById(Long id) {
+        return Stream.of(authorRepository.findOne(id)).map(AuthorDto::new).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<AuthorDto> findAuthorsByName(String name) {
+        return authorRepository.findByName(name).stream().map(AuthorDto::new).collect(Collectors.toList());
+    }
+
+    @Override
     public void saveBook(BookDto bookDto) {
         Book entity = new Book(bookDto);
         bookRepository.save(entity);
@@ -43,13 +53,13 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public BookDto findById(Long id) {
+    public BookDto findBookById(Long id) {
         return Stream.of(bookRepository.findOne(id)).map(BookDto::new).findFirst().orElse(null);
     }
 
     @Override
-    public BookDto findByName(String name) {
-        return Stream.of(bookRepository.findByName(name)).map(BookDto::new).findFirst().orElse(null);
+    public List<BookDto> findBooksByName(String name) {
+        return bookRepository.findByName(name).stream().map(BookDto::new).collect(Collectors.toList());
     }
 
     @Override

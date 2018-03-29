@@ -7,7 +7,7 @@ import java.util.List;
 
 interface BookRepository extends BaseRepository<Book, Long> {
 
-    Book findByName(String name);
+    List<Book> findByName(String name);
 
     @Query("select b from Book b join fetch b.author")
     List<Book> findAll();

@@ -5,11 +5,15 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor
 public class AuthorDto {
-    Long id;
+    Long authorId;
     String authorName;
 
+    public AuthorDto(String authorName) {
+        this.authorName = authorName;
+    }
+
     public AuthorDto(Author author) {
-        this.id = author.getId();
+        this.authorId = author.getId();
         this.authorName = author.getName();
     }
 }

@@ -27,6 +27,16 @@ public class LibraryWsServiceImpl implements LibraryService {
     }
 
     @Override
+    public AuthorDto findAuthorById(Long id) {
+        return libraryService.findAuthorById(id);
+    }
+
+    @Override
+    public List<AuthorDto> findAuthorsByName(String name) {
+        return libraryService.findAuthorsByName(name);
+    }
+
+    @Override
     public void saveBook(BookDto book) {
         libraryService.saveBook(book);
     }
@@ -37,13 +47,13 @@ public class LibraryWsServiceImpl implements LibraryService {
     }
 
     @Override
-    public BookDto findById(Long id) {
-        return libraryService.findById(id);
+    public BookDto findBookById(Long id) {
+        return libraryService.findBookById(id);
     }
 
     @Override
-    public BookDto findByName(String name) {
-        return libraryService.findByName(name);
+    public List<BookDto> findBooksByName(String name) {
+        return libraryService.findBooksByName(name);
     }
 
     @Override
